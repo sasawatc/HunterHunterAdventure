@@ -21,7 +21,8 @@ And some incredible people are drawn to that magic.""")
 
 
 def main():
-    start_game()
+    ask_name()
+    # print("In:", game_input(regex=DIGITS_ONLY))
 
 
 if __name__ == "__main__":
