@@ -4,8 +4,6 @@ import time
 
 from fg_color import *
 
-# from script_reader import *
-
 PRINT_SPEED = 0  # default 0.05
 PRINT_INSTANT = 0
 PAUSE_DURATION = 0.5
