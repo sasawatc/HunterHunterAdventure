@@ -33,7 +33,7 @@ def delay_print(text="", delay=0):
         sys.stdout.flush()
 
 
-def game_print(text, color=colorama.Style.RESET_ALL, delay=PRINT_SPEED, end="\n", form_feed=False):
+def game_print(text="", color=colorama.Style.RESET_ALL, delay=PRINT_SPEED, end="\n", form_feed=False):
     colorama.init()
     if form_feed:  # if form_feed is True, then performs form feed
         form_feed()

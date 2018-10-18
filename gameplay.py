@@ -1,8 +1,9 @@
 import random
 
+import colorama
+
 from greet_player import *
 from question import Question
-from script_line import ScriptLine
 
 """
 @author: sasawat.chanate
@@ -65,7 +66,7 @@ def rock_paper_scissors():
     rps_dict = {1: "Rock", 2: "Paper", 3: "Scissors"}
 
     while player_score < wins_required and com_score < wins_required:
-        print(str(question))
+        game_print(str(question))
         player = int(game_input(regex=r"^[1-3]$"))
 
         com = random.randint(1, 3)
@@ -77,195 +78,224 @@ def rock_paper_scissors():
             game_print("Tie!")
         elif player == "Rock":
             if com == "Paper":
-                game_print("You lose... " + com + " covers " + player, delay=PRINT_INSTANT)
+                game_print()
+                game_print("You lose... ", end='', color=colorama.Fore.RED)
+                game_print(com + " covers " + player, delay=PRINT_INSTANT)
                 com_score += 1
             else:
-                game_print("You win... " + player + " smashes " + com, delay=PRINT_INSTANT)
+                game_print()
+                game_print("You win... ", end='', color=colorama.Fore.GREEN)
+                game_print(player + " smashes " + com, delay=PRINT_INSTANT)
                 player_score += 1
         elif player == "Paper":
             if com == "Scissors":
-                game_print("You lose... " + com + " cut " + player, delay=PRINT_INSTANT)
+                game_print()
+                game_print("You lose... ", end='', color=colorama.Fore.RED)
+                game_print(com + " cut " + player, delay=PRINT_INSTANT)
                 com_score += 1
             else:
-                game_print("You win... " + player + " covers " + com, delay=PRINT_INSTANT)
+                game_print()
+                game_print("You win... ", end='', color=colorama.Fore.GREEN)
+                game_print(player + " covers " + com, delay=PRINT_INSTANT)
                 player_score += 1
         else:
             if com == "Rock":
-                game_print("You lose... " + com + " smashes " + player, delay=PRINT_INSTANT)
+                game_print()
+                game_print("You lose... ", end='', color=colorama.Fore.RED)
+                game_print(com + " smashes " + player, delay=PRINT_INSTANT)
                 com_score += 1
             else:
-                game_print("You win... " + player + " cut " + com, delay=PRINT_INSTANT)
+                game_print()
+                game_print("You win... ", end='', color=colorama.Fore.GREEN)
+                game_print(player + " cut " + com, delay=PRINT_INSTANT)
                 player_score += 1
 
         game_print(f"Gon: {player_score}", delay=PRINT_INSTANT)
         game_print(f"Leorio: {com_score}", delay=PRINT_INSTANT)
 
         if player_score >= wins_required:
-            game_print("\nCongratulations! You win!")
+            game_print("\nCongratulations! You win!\nYou can make your decision.")
             return "Gon Wins"
         if com_score >= wins_required:
-            game_print("\nSorry! You lose!")
+            game_print("\nSorry! You lose!\nLeorio will make the decision.")
             return "Leorio Wins"
 
 
 def start_game():
-    script = [ScriptLine("A", "Gon is still trying to catch the Lord of the Lake?"),
-              ScriptLine("Mito", "Huh? Y-Yes... He's been at it for a week."),
-              ScriptLine("A", "What a fool!"),
-              ScriptLine("A", "Five adults couldn't manage to reel in that monster."),
-              ScriptLine("A", "How is a child supposed to catch that beast?"),
-              ScriptLine("A", "Mito-san doesn't want him taking the Hunter Exam."),
-              ScriptLine("B", "But Gon's old man was the same age when he caught it..."),
-              ScriptLine("A", "He can't do it!")]
-
-    script_print(script)
-    system_pause()
-    form_feed()
-
-    # Start catch fist game
-    catch_fish_hi_lo_game()
-    system_pause()
-    form_feed()
-
-    script = [ScriptLine("Gon", "Got him!"),
-              ScriptLine("Gon", "Yes! Yes! Yes! Yes! Yes!"),
-              ScriptLine("Gon", "I got him good!"),
-              ScriptLine("A", "It's huge!"),
-              ScriptLine("B", "This is the Lord of the Lake?"),
-              ScriptLine("C", "It's been twenty years!"),
-              ScriptLine("D", "I know! It was Gon's father that time right?"),
-              ScriptLine("B", "Gon actually caught the Lord! Look Mito-san!"),
-              ScriptLine("Gon", "Mito-san! I caught the Lord of the Lake as promised..."),
-              ScriptLine("Gon", "So I can take the Hunter Exam right? Right?"),
-              ScriptLine("Mito", "You really are Ging's son..."),
-              ScriptLine("Mito", "Just promise that you'll come back safe. Can you do that?"),
-              ScriptLine("Gon", "Uh-huh! I promise!"),
-              ScriptLine("Both", "Pinky swear made..."),
-              ScriptLine("Both", "\"Whoever breaks their promise has to swallow a thousand needles.\""),
-              ScriptLine("Both", "Sealed with a kiss!")]
-
-    script_print(script)
-    system_pause()
-    form_feed()
-
-    game_print("\nSoon later, Gon got on a ship filled with a few other hunter applicants.")
-    game_print("The boat supposedly goes to the exam site.")
-    game_print("As the boat went off sea, Gon explored around the ship and made friend")
-    game_print("with a clumsy sailor, Katsuo.")
-    game_print("However, while onto a long journey, the ship got hit by a gigantic storm...")
-
-    system_pause()
-    form_feed()
-
-    script = [ScriptLine("A", "Captain! L-Look..."),
-              ScriptLine("Katsuo", "If we get caught by that waterspout, the ship will sink!"),
-              ScriptLine("Captain", "Lower the sails now."),
-              ScriptLine("Katsuo", "Aye!"),
-              ScriptLine("Gon", "I'll help!"),
-              ScriptLine("Katsuo", "Uh-huh! Come with me!"),
-              ScriptLine("Captain", "I'll take the helm. Full to starboard!"),
-              ScriptLine("Narrator", "The storm was so strong, it sent Katsuo flying into the sea!"),
-              ScriptLine("Gon", "Katsuo-san!")]
-
-    script_print(script)
-
-    question = Question(question="Katsuo, the sailor, was sent off the ship by the storm.\n"
-                                 "What will you do?",
-                        choices=["1)\tCall for help",
-                                 "2)\tTrust that he can survive; he's a sailor!",
-                                 "3)\tJump out of the ship to save him"])
-
-    game_print(str(question))
-    question.user_input = game_input(regex=r"^[1-3]$")
-
-    if question.user_input == "1":
-        game_print()
-        script_print([ScriptLine("Gon", "Help! Help! Help!")])
-        game_print()
-        game_print("Gon tried to call for help but nobody hears him in the midst of the storm.")
-        game_print("Within a flash, Katsuo vanished into the rough sea...")
-        game_print("The Captain feels that Gon is not capable of being a hunter.")
-        fail("The Captain disqualifies Gon from being a hunter.")
-
-    elif question.user_input == "2":
-        game_print()
-        game_print("Soon after the storm passes by, you arrived at an island.")
-        game_print("However, soon you hear a loud cracking noise.")
-        game_print("Turns out, you were deserted in an island with an active volcano.")
-        game_print("The Captain laugh as he soon sailing off, \"a life for a life...\"")
-        fail("You died in the volcanic island.")
-    else:
-        game_print()
-        script_print([ScriptLine("Gon", "Katsuo-san!")])
-        game_print()
-        game_print("You scream as you leap out of the deck and grab Katsuo mid-air.")
-        game_print("Two of the applicants was around and they quickly grab your two legs")
-        game_print("while holding on to the deck.")
-        game_print()
-        game_print("You saved Katsuo!")
-        game_print("You gained two new friends: Leorio and Kurapika")
-        game_print()
-        game_print("The Captain praises you and promised you to bring you three")
-        game_print("to the port closest to the exam site!")
-
-    system_pause()
-    form_feed()
-
-    game_print("After winning the Captain's favor, the trio of Gon, Kurapika, and Leorio arrived safely")
-    game_print("at Dolle Harbor near the exam site. After everyone went down from the ship,")
-    game_print("the Captain approaches them.")
-
-    script = [ScriptLine("Gon", "Thanks Captain! I had a great time!"),
-              ScriptLine("Captain", "I had fun too."),
-              ScriptLine("Captain", "Right! As a token of my appreciation, I'll give you some advice."),
-              ScriptLine("Gon", "Advice?"),
-              ScriptLine("Captain", "Look. See that big cedar tree on the hilltop?"),
-              ScriptLine("Captain", "You should make your way there first."),
-              ScriptLine("Captain", "It's a shortcut to the exam site."),
-              ScriptLine("Gon", "A shortcut? Got it! So I just need to head for that tree!"),
-              ScriptLine("Gon", "Thanks"),
-              ScriptLine("Captain", "Best of luck!")]
-
-    system_pause()
-    form_feed()
-    script_print(script)
-    system_pause()
-    form_feed()
-
-    game_print("Gon then went on to discuss with Leorio and Kurapika. Leorio, however, argue")
-    game_print("that the notice he received mentioned that the exam is supposedly being held")
-    game_print("somewhere in Zaban City. Not trusting the Captain, Leorio suggested that")
-    game_print("they all could get a bus to Zaban.")
-    game_print("Gon disagrees because he thinks that the Captain would not lie about it.")
-
-    system_pause()
+    # script = [ScriptLine("A", "Gon is still trying to catch the Lord of the Lake?"),
+    #           ScriptLine("Mito", "Huh? Y-Yes... He's been at it for a week."),
+    #           ScriptLine("A", "What a fool!"),
+    #           ScriptLine("A", "Five adults couldn't manage to reel in that monster."),
+    #           ScriptLine("A", "How is a child supposed to catch that beast?"),
+    #           ScriptLine("A", "Mito-san doesn't want him taking the Hunter Exam."),
+    #           ScriptLine("B", "But Gon's old man was the same age when he caught it..."),
+    #           ScriptLine("A", "He can't do it!")]
+    #
+    # script_print(script)
+    # system_pause()
+    # form_feed()
+    #
+    # # Start catch fist game
+    # catch_fish_hi_lo_game()
+    # system_pause()
+    # form_feed()
+    #
+    # script = [ScriptLine("Gon", "Got him!"),
+    #           ScriptLine("Gon", "Yes! Yes! Yes! Yes! Yes!"),
+    #           ScriptLine("Gon", "I got him good!"),
+    #           ScriptLine("A", "It's huge!"),
+    #           ScriptLine("B", "This is the Lord of the Lake?"),
+    #           ScriptLine("C", "It's been twenty years!"),
+    #           ScriptLine("D", "I know! It was Gon's father that time right?"),
+    #           ScriptLine("B", "Gon actually caught the Lord! Look Mito-san!"),
+    #           ScriptLine("Gon", "Mito-san! I caught the Lord of the Lake as promised..."),
+    #           ScriptLine("Gon", "So I can take the Hunter Exam right? Right?"),
+    #           ScriptLine("Mito", "You really are Ging's son..."),
+    #           ScriptLine("Mito", "Just promise that you'll come back safe. Can you do that?"),
+    #           ScriptLine("Gon", "Uh-huh! I promise!"),
+    #           ScriptLine("Both", "Pinky swear made..."),
+    #           ScriptLine("Both", "\"Whoever breaks their promise has to swallow a thousand needles.\""),
+    #           ScriptLine("Both", "Sealed with a kiss!")]
+    #
+    # script_print(script)
+    # system_pause()
+    # form_feed()
+    #
+    # game_print("\nSoon later, Gon got on a ship filled with a few other hunter applicants.")
+    # game_print("The boat supposedly goes to the exam site.")
+    # game_print("As the boat went off sea, Gon explored around the ship and made friend")
+    # game_print("with a clumsy sailor, Katsuo.")
+    # game_print("However, while onto a long journey, the ship got hit by a gigantic storm...")
+    #
+    # system_pause()
+    # form_feed()
+    #
+    # script = [ScriptLine("A", "Captain! L-Look..."),
+    #           ScriptLine("Katsuo", "If we get caught by that waterspout, the ship will sink!"),
+    #           ScriptLine("Captain", "Lower the sails now."),
+    #           ScriptLine("Katsuo", "Aye!"),
+    #           ScriptLine("Gon", "I'll help!"),
+    #           ScriptLine("Katsuo", "Uh-huh! Come with me!"),
+    #           ScriptLine("Captain", "I'll take the helm. Full to starboard!"),
+    #           ScriptLine("Narrator", "The storm was so strong, it sent Katsuo flying into the sea!"),
+    #           ScriptLine("Gon", "Katsuo-san!")]
+    #
+    # script_print(script)
+    #
+    # question = Question(question="Katsuo, the sailor, was sent off the ship by the storm.\n"
+    #                              "What will you do?",
+    #                     choices=["1)\tCall for help",
+    #                              "2)\tTrust that he can survive; he's a sailor!",
+    #                              "3)\tJump out of the ship to save him"])
+    #
+    # game_print(str(question))
+    # question.user_input = game_input(regex=r"^[1-3]$")
+    #
+    # if question.user_input == "1":
+    #     game_print()
+    #     script_print([ScriptLine("Gon", "Help! Help! Help!")])
+    #     game_print()
+    #     game_print("Gon tried to call for help but nobody hears him in the midst of the storm.")
+    #     game_print("Within a flash, Katsuo vanished into the rough sea...")
+    #     game_print("The Captain feels that Gon is not capable of being a hunter.")
+    #     fail("The Captain disqualifies Gon from being a hunter.")
+    #
+    # elif question.user_input == "2":
+    #     game_print()
+    #     game_print("Soon after the storm passes by, you arrived at an island.")
+    #     game_print("However, soon you hear a loud cracking noise.")
+    #     game_print("Turns out, you were deserted in an island with an active volcano.")
+    #     game_print("The Captain laugh as he soon sailing off, \"a life for a life...\"")
+    #     fail("You died in the volcanic island.")
+    # else:
+    #     game_print()
+    #     script_print([ScriptLine("Gon", "Katsuo-san!")])
+    #     game_print()
+    #     game_print("You scream as you leap out of the deck and grab Katsuo mid-air.")
+    #     game_print("Two of the applicants was around and they quickly grab your two legs")
+    #     game_print("while holding on to the deck.")
+    #     game_print()
+    #     game_print("You saved Katsuo!")
+    #     game_print("You gained two new friends: Leorio and Kurapika")
+    #     game_print()
+    #     game_print("The Captain praises you and promised you to bring you three")
+    #     game_print("to the port closest to the exam site!")
+    #
+    # system_pause()
+    # form_feed()
+    #
+    # game_print("After winning the Captain's favor, the trio of Gon, Kurapika, and Leorio arrived safely")
+    # game_print("at Dolle Harbor near the exam site. After everyone went down from the ship,")
+    # game_print("the Captain approaches them.")
+    #
+    # script = [ScriptLine("Gon", "Thanks Captain! I had a great time!"),
+    #           ScriptLine("Captain", "I had fun too."),
+    #           ScriptLine("Captain", "Right! As a token of my appreciation, I'll give you some advice."),
+    #           ScriptLine("Gon", "Advice?"),
+    #           ScriptLine("Captain", "Look. See that big cedar tree on the hilltop?"),
+    #           ScriptLine("Captain", "You should make your way there first."),
+    #           ScriptLine("Captain", "It's a shortcut to the exam site."),
+    #           ScriptLine("Gon", "A shortcut? Got it! So I just need to head for that tree!"),
+    #           ScriptLine("Gon", "Thanks"),
+    #           ScriptLine("Captain", "Best of luck!")]
+    #
+    # system_pause()
+    # form_feed()
+    # script_print(script)
+    # system_pause()
+    # form_feed()
+    #
+    # game_print("Gon then went on to discuss with Leorio and Kurapika. Leorio, however, argued")
+    # game_print("that the notice he received mentioned that the exam is supposedly being held")
+    # game_print("somewhere in Zaban City. Not trusting the Captain, Leorio suggested that")
+    # game_print("they all could get a bus to Zaban.")
+    # game_print("Gon disagrees because he thinks that the Captain would not lie about it.")
+    #
+    # system_pause()
     form_feed()
     winner = rock_paper_scissors()
     system_pause()
     form_feed()
 
     if winner == "Gon Wins":
+        game_print("Since you won the match, you can now choose to the path.")
         question = Question(question="Choose a path to go to the exam site...",
                             choices=["1)\tTrust Captain and proceed to the big cedar tree",
                                      "2)\tTrust Leorio and get on the bus to Zaban City"])
-        question.user_input = int(game_input(regex=r"^[1-2]$"))
 
-        if question.user_input == 1:
+        game_print(str(question))
+        ans = int(game_input(regex=r"^[1-2]$"))
+
+        if ans == 1:
             game_print("You decided to trust the Captain and proceed to the big cedar tree!")
         else:
             game_print("You decided to trust your friend and get on the bus to Zaban City.")
     else:
-        question.user_input = random.randint(1, 2)  # Simulate Leorio making a decision
+        game_print("Since you lose to Leorio, he will be the one choosing the path.")
+        game_print("\nLeorio is thinking hard", end='')
+        game_print(".", end='', delay=PAUSE_DURATION)
+        game_print(".", end='', delay=PAUSE_DURATION)
+        game_print(".", end='', delay=PAUSE_DURATION)
+        game_print(".", end='', delay=PAUSE_DURATION)
+        game_print(".", end='', delay=PAUSE_DURATION)
+        game_print("\n", end='', delay=PAUSE_DURATION)
 
-        if question.user_input == 1:
+        ans = random.randint(1, 2)  # Simulate Leorio making a decision
+
+        if ans == 1:
             game_print("Leorio decided to trust you and proceed to the big cedar tree!")
         else:
             game_print("Leorio insisted on getting on the bus to Zaban City.")
 
-    if question.user_input == 1:
+    if ans == 1:
         game_print("You found the examination guides that will lead you to the exam site.")
     else:
         fail("It's a TRAP! The bus took a detour into a minefield. You are now dead.")
 
+    game_print("\nTo be continued", end='')
+    game_print(".", end='', delay=PAUSE_DURATION)
+    game_print(".", end='', delay=PAUSE_DURATION)
+    game_print(".", end='', delay=PAUSE_DURATION)
+    game_print("\n", end='', delay=PAUSE_DURATION)
     system_pause()
     form_feed()
