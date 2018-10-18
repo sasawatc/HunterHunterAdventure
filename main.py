@@ -58,9 +58,9 @@ def goodbye():
 
 
 def main():
-    # form_feed()
-    # start_prologue()
-    # greet_player()
+    form_feed()
+    start_prologue()
+    greet_player()
     start_game()
     goodbye()
 
