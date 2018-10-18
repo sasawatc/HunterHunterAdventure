@@ -22,7 +22,7 @@ DocString:
     B) Known Bugs and/or Errors:
     
     >>>Windows<<<
-    - Unable to manipulate color and styling to printed text due to Windows not compiling the ASCII standards
+    - Unable to manipulate color and styling to printed text due to Windows not compiling the ANSI standards
     - Colorama failed to mitigrate this issue (current implementation disables styling for win32 system)
     
     >>>macOS<<<

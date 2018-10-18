@@ -23,9 +23,6 @@ ALPHABET_ONLY = r"^[a-z]+$"
 EVERYTHING = r".*?"
 
 
-# ScriptLine = namedtuple("ScriptLine", "name, text")
-# Delay = seconds
-
 def delay_print(text="", delay=0):
     for i in text:
         time.sleep(delay)
