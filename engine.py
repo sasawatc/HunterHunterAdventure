@@ -38,7 +38,7 @@ def game_print(text, color=colorama.Style.RESET_ALL, delay=PRINT_SPEED, end="\n"
     if form_feed:  # if form_feed is True, then performs form feed
         form_feed()
 
-    # Windows's command line doesn't support color and styling
+    # Windows's CLI doesn't support color and styling
     if sys.platform == "win32":
         delay_print(text + end, delay)
     else:
@@ -47,7 +47,7 @@ def game_print(text, color=colorama.Style.RESET_ALL, delay=PRINT_SPEED, end="\n"
 
 def script_print(script):
     for line in script:
-        game_print(str(line), delay=0)
+        game_print(str(line), delay=PRINT_INSTANT)
         pause(SCRIPT_LINE_SPEED)
 
 
@@ -73,12 +73,12 @@ def system_pause():
 
 
 def form_feed():
-    colorama.init()
-    print("\x1B[2J")
-    print("\f", end='')
+    colorama.init()  # attempt to convert ASCII code for specific OS (especially for Windows)
+    print("\f", end='')  # intended for IDE consoles
+    print("\x1B[2J")  # intended for Terminal CLI
 
 
 def fail(msg=""):
-    game_print(f"GAME OVER: {msg}", color=colorama.Fore.RED + colorama.Style.BRIGHT)
+    game_print(f"\nGAME OVER: {msg}", color=colorama.Fore.RED + colorama.Style.BRIGHT)
     system_pause()
     sys.exit()

@@ -13,9 +13,18 @@ DocString:
     This is a text adventure game based on a Japanese animation TV series, Hunter × Hunter (2011)
     which was based on Yoshihiro Togashi's Hunter × Hunter manga.
     The game consists of multiple scenario choice questions and fun mini-games.
+    
+    Note:
+    The content might be a different from the original series to serve requirement purposes.
 
     B) Known Bugs and/or Errors:
-    None.
+    
+    >>>Windows<<<
+    - Unable to manipulate color and styling to printed text due to Windows not compiling the ASCII standards
+    - Colorama failed to mitigrate this issue (current implemention disables styling for win32 system)
+    
+    >>>macOS<<<
+    - Unknown (no hardware for testing)
 
 """
 
@@ -47,12 +56,12 @@ def goodbye():
 
 
 def main():
-    form_feed()
-    start_prologue()
-    greet_player()
-    start_game()
-    goodbye()
-
+    # form_feed()
+    # start_prologue()
+    # greet_player()
+    # start_game()
+    # goodbye()
+    rock_paper_scissors()
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,7 @@ DocString:
 
 def catch_fish_hi_lo_game():
     ans = random.randint(1, 100)
-    attempts_left = 10
+    attempts_left = 10  # default 7; submit: 10 to allow more chances to play the game
 
     game_print("\nLet's help Gon catch the Lord of the Lake fish!")
     game_print("The game is a simple hi-lo game.")
@@ -41,7 +41,7 @@ def catch_fish_hi_lo_game():
         if attempts_left < 0:
             fail("Wild Lord of the Lake fled!")
         else:
-            game_print(f"Attempts Left: {attempts_left}")
+            game_print(f"Attempts Left: {attempts_left}", delay=PRINT_INSTANT)
 
     game_print("\nYou've caught the Lord of the Lake!!!")
 
@@ -68,7 +68,7 @@ def rock_paper_scissors():
         print(str(question))
         player = int(game_input(regex=r"^[1-3]$"))
 
-        com = random.randint(1, 4)
+        com = random.randint(1, 3)
 
         player = rps_dict[player]
         com = rps_dict[com]
@@ -77,28 +77,28 @@ def rock_paper_scissors():
             game_print("Tie!")
         elif player == "Rock":
             if com == "Paper":
-                game_print("You lose... " + com + " covers " + player)
+                game_print("You lose... " + com + " covers " + player, delay=PRINT_INSTANT)
                 com_score += 1
             else:
-                game_print("You win... " + player + " smashes " + com)
+                game_print("You win... " + player + " smashes " + com, delay=PRINT_INSTANT)
                 player_score += 1
         elif player == "Paper":
             if com == "Scissors":
-                game_print("You lose... " + com + " cut " + player)
+                game_print("You lose... " + com + " cut " + player, delay=PRINT_INSTANT)
                 com_score += 1
             else:
-                game_print("You win... " + player + " covers " + com)
+                game_print("You win... " + player + " covers " + com, delay=PRINT_INSTANT)
                 player_score += 1
         else:
             if com == "Rock":
-                game_print("You lose... " + com + " smashes " + player)
+                game_print("You lose... " + com + " smashes " + player, delay=PRINT_INSTANT)
                 com_score += 1
             else:
-                game_print("You win... " + player + " cut " + com)
+                game_print("You win... " + player + " cut " + com, delay=PRINT_INSTANT)
                 player_score += 1
 
-        game_print(f"Gon: {player_score}")
-        game_print(f"Leorio: {com_score}")
+        game_print(f"Gon: {player_score}", delay=PRINT_INSTANT)
+        game_print(f"Leorio: {com_score}", delay=PRINT_INSTANT)
 
         if player_score >= wins_required:
             game_print("\nCongratulations! You win!")
@@ -120,10 +120,12 @@ def start_game():
 
     script_print(script)
     system_pause()
+    form_feed()
 
     # Start catch fist game
     catch_fish_hi_lo_game()
     system_pause()
+    form_feed()
 
     script = [ScriptLine("Gon", "Got him!"),
               ScriptLine("Gon", "Yes! Yes! Yes! Yes! Yes!"),
@@ -133,25 +135,27 @@ def start_game():
               ScriptLine("C", "It's been twenty years!"),
               ScriptLine("D", "I know! It was Gon's father that time right?"),
               ScriptLine("B", "Gon actually caught the Lord! Look Mito-san!"),
-              ScriptLine("Gon", "Mito-san!	I caught the Lord of the Lake as promised..."),
+              ScriptLine("Gon", "Mito-san! I caught the Lord of the Lake as promised..."),
               ScriptLine("Gon", "So I can take the Hunter Exam right? Right?"),
               ScriptLine("Mito", "You really are Ging's son..."),
               ScriptLine("Mito", "Just promise that you'll come back safe. Can you do that?"),
               ScriptLine("Gon", "Uh-huh! I promise!"),
               ScriptLine("Both", "Pinky swear made..."),
-              ScriptLine("Both", "Whoever breaks their promise has to swallow a thousand needles."),
+              ScriptLine("Both", "\"Whoever breaks their promise has to swallow a thousand needles.\""),
               ScriptLine("Both", "Sealed with a kiss!")]
 
     script_print(script)
     system_pause()
+    form_feed()
 
-    game_print("\nSoon later, Gon got on a ship filled with the other hunter applicants.")
+    game_print("\nSoon later, Gon got on a ship filled with a few other hunter applicants.")
     game_print("The boat supposedly goes to the exam site.")
     game_print("As the boat went off sea, Gon explored around the ship and made friend")
     game_print("with a clumsy sailor, Katsuo.")
     game_print("However, while onto a long journey, the ship got hit by a gigantic storm...")
 
     system_pause()
+    form_feed()
 
     script = [ScriptLine("A", "Captain! L-Look..."),
               ScriptLine("Katsuo", "If we get caught by that waterspout, the ship will sink!"),
@@ -164,7 +168,6 @@ def start_game():
               ScriptLine("Gon", "Katsuo-san!")]
 
     script_print(script)
-    system_pause()
 
     question = Question(question="Katsuo, the sailor, was sent off the ship by the storm.\n"
                                  "What will you do?",
@@ -176,33 +179,41 @@ def start_game():
     question.user_input = game_input(regex=r"^[1-3]$")
 
     if question.user_input == "1":
+        game_print()
         script_print([ScriptLine("Gon", "Help! Help! Help!")])
+        game_print()
         game_print("Gon tried to call for help but nobody hears him in the midst of the storm.")
         game_print("Within a flash, Katsuo vanished into the rough sea...")
         game_print("The Captain feels that Gon is not capable of being a hunter.")
         fail("The Captain disqualifies Gon from being a hunter.")
 
     elif question.user_input == "2":
+        game_print()
         game_print("Soon after the storm passes by, you arrived at an island.")
-        game_print("However, soon you hear a loud cracking noise."
-                   "Turns out, you were deserted in an island with an active volcano."
-                   "The Captain laugh as he soon sailing off, \"a life for a life...\"")
+        game_print("However, soon you hear a loud cracking noise.")
+        game_print("Turns out, you were deserted in an island with an active volcano.")
+        game_print("The Captain laugh as he soon sailing off, \"a life for a life...\"")
         fail("You died in the volcanic island.")
     else:
+        game_print()
         script_print([ScriptLine("Gon", "Katsuo-san!")])
+        game_print()
         game_print("You scream as you leap out of the deck and grab Katsuo mid-air.")
-        game_print("Two of the applicants was around and they quickly grab your two legs"
-                   "while holding on to the deck.")
+        game_print("Two of the applicants was around and they quickly grab your two legs")
+        game_print("while holding on to the deck.")
+        game_print()
         game_print("You saved Katsuo!")
         game_print("You gained two new friends: Leorio and Kurapika")
-        game_print("The Captain praises you and promised you to bring you three to the port"
-                   "closest to the exam site!")
+        game_print()
+        game_print("The Captain praises you and promised you to bring you three")
+        game_print("to the port closest to the exam site!")
 
     system_pause()
+    form_feed()
 
-    game_print("After winning the Captain's favor, the trio of Gon, Kurapika, and Leorio arrived safely "
-               "at Dolle Harbor near the exam site. After everyone went down from the ship,"
-               "the Captain approaches them.")
+    game_print("After winning the Captain's favor, the trio of Gon, Kurapika, and Leorio arrived safely")
+    game_print("at Dolle Harbor near the exam site. After everyone went down from the ship,")
+    game_print("the Captain approaches them.")
 
     script = [ScriptLine("Gon", "Thanks Captain! I had a great time!"),
               ScriptLine("Captain", "I had fun too."),
@@ -216,18 +227,22 @@ def start_game():
               ScriptLine("Captain", "Best of luck!")]
 
     system_pause()
+    form_feed()
     script_print(script)
     system_pause()
+    form_feed()
 
-    game_print("Gon then went on to discuss with Leorio and Kurapika. Leorio, however, argue"
-               "that the notice he received mentioned that the exam is supposedly being held"
-               "somewhere in Zaban City. Not trusting the Captain, Leorio suggested that "
-               "they all could get a bus to Zaban.")
-    game_print("Gon disagrees because he think that the Captain would not lie about it.")
+    game_print("Gon then went on to discuss with Leorio and Kurapika. Leorio, however, argue")
+    game_print("that the notice he received mentioned that the exam is supposedly being held")
+    game_print("somewhere in Zaban City. Not trusting the Captain, Leorio suggested that")
+    game_print("they all could get a bus to Zaban.")
+    game_print("Gon disagrees because he thinks that the Captain would not lie about it.")
 
     system_pause()
+    form_feed()
     winner = rock_paper_scissors()
     system_pause()
+    form_feed()
 
     if winner == "Gon Wins":
         question = Question(question="Choose a path to go to the exam site...",
