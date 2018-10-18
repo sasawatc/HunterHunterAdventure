@@ -65,10 +65,11 @@ def ask_boy_girl():
     return question.user_input
 
 
-def print_logo():
+def print_logo():  # unused
     file = open("artworks/hunter_logo.txt")
     for i in file:
         print(i)
+
 
 def intro(name):
     game_print(f"Thank you {name} for spending time giving your information to a stranger,")
