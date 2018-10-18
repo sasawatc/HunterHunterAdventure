@@ -15,7 +15,7 @@ DocString:
 """
 
 PRINT_SPEED = 0.05  # default 0.05
-SCRIPT_LINE_SPEED = 0.1  # default 0.9
+SCRIPT_LINE_SPEED = 0.9  # default 0.9
 PRINT_INSTANT = 0  # default 0
 PAUSE_DURATION = 0.5  # default 0.5
 DIGITS_ONLY = r"^\d+$"
